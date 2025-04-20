@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -12,6 +14,51 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  String? _errorMessage;
+  bool _isLoading = false;
+
+  Future<void> _signUp() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('회원가입 성공!')),
+        );
+        context.go('/'); // 홈으로 이동
+      }
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        switch (e.code) {
+          case 'email-already-in-use':
+            _errorMessage = '이미 등록된 이메일입니다.';
+            break;
+          case 'weak-password':
+            _errorMessage = '비밀번호가 너무 약합니다.';
+            break;
+          case 'invalid-email':
+            _errorMessage = '유효하지 않은 이메일입니다.';
+            break;
+          default:
+            _errorMessage = '오류: ${e.message}';
+        }
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +76,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: ListView(
             children: [
               const SizedBox(height: 40),
+              if (_errorMessage != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Text(
+                    _errorMessage!,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
@@ -73,24 +128,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
               ),
               const SizedBox(height: 32),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // 여기에 회원가입 로직 추가 (Firebase, 서버 등)
-                    showDialog(
-                      context: context,
-                      builder: (_) => const AlertDialog(
-                        content: Text('회원가입 완료!'),
+              _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : ElevatedButton(
+                      onPressed: _signUp,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF2196F3),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
                       ),
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF2196F3), // 파랑 계열
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                ),
-                child: const Text('가입하기', style: TextStyle(fontSize: 18)),
-              ),
+                      child: const Text(
+                        '가입하기',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
             ],
           ),
         ),

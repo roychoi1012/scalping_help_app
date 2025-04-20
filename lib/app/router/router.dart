@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:scalping_helper/presentation/screen/home/home_screen.dart';
+import 'package:scalping_helper/presentation/screen/sign_in/sign_in_screen.dart';
 import 'package:scalping_helper/presentation/screen/sign_up/sign_up_screen.dart';
 
 final GoRouter router = GoRouter(
@@ -12,6 +13,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/signup',
       builder: (context, state) => const SignUpScreen(),
+    ),
+    GoRoute(
+      path: '/sign_in',
+      builder: (_, __) => const SignInScreen(),
     ),
   ],
 );
