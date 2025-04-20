@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "81163687272",
+    "project_id": "scalping-helper-app",
+    "storage_bucket": "scalping-helper-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81163687272:android:69c326e5a237d490c2f2dd",
+        "android_client_info": {
+          "package_name": "com.example.scalping_helper"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDg-PsBjnXZWy25gMnKNi0EffjZmXpehDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
