@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:scalping_helper/presentation/screen/home/home_screen.dart';
+import 'package:scalping_helper/presentation/auth/auth_gate.dart';
 import 'package:scalping_helper/presentation/screen/sign_in/sign_in_screen.dart';
 import 'package:scalping_helper/presentation/screen/sign_up/sign_up_screen.dart';
 
@@ -8,7 +8,7 @@ final GoRouter router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => const HomeScreen(), // 임시 홈
+      builder: (context, state) => const AuthGate(),
     ),
     GoRoute(
       path: '/signup',

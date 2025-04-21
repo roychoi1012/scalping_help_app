@@ -63,10 +63,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE8F2FF), // 연파랑 계열
+      backgroundColor: const Color(0xFFE8F2FF),
       appBar: AppBar(
         title: const Text('회원가입'),
-        backgroundColor: const Color(0xFF1976D2), // 파랑 계열
+        backgroundColor: const Color(0xFF1976D2),
         foregroundColor: Colors.white,
       ),
       body: Padding(
@@ -136,11 +136,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         backgroundColor: const Color(0xFF2196F3),
                         padding: const EdgeInsets.symmetric(vertical: 14),
                       ),
-                      child: const Text(
-                        '가입하기',
-                        style: TextStyle(fontSize: 18),
-                      ),
+                      child: const Text('가입하기', style: TextStyle(fontSize: 18)),
                     ),
+              const SizedBox(height: 24),
+              GestureDetector(
+                onTap: () {
+                  context.go('/sign_in');
+                },
+                child: const Center(
+                  child: Text.rich(
+                    TextSpan(
+                      text: '이미 계정이 있으신가요? ',
+                      children: [
+                        TextSpan(
+                          text: '로그인 하러가기',
+                          style: TextStyle(
+                            color: Color(0xFF1976D2),
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
