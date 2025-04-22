@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:scalping_helper/presentation/screen/home/home_screen.dart';
-import 'package:scalping_helper/presentation/screen/sign_in/sign_in_screen.dart';
-
+import 'package:go_router/go_router.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -12,20 +10,25 @@ class AuthGate extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        // 아직 Firebase 상태 확인 중
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
             body: Center(child: CircularProgressIndicator()),
           );
         }
 
-        // 로그인 된 상태
         if (snapshot.hasData) {
-          return const HomeScreen();
+          // 🔥 로그인 되어 있으면 '/home'으로 이동
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.go('/home');
+          });
+          return const SizedBox(); // 빈 위젯 반환 (잠시 대기)
         }
 
-        // 로그인 안 된 상태
-        return const SignInScreen();
+        // 로그인 안 된 경우
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          context.go('/sign_in');
+        });
+        return const SizedBox();
       },
     );
   }

@@ -12,7 +12,20 @@
           "package_name": "com.example.scalping_helper"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "81163687272-puppmdtgkrduoiv35ec4mec2oekkpml0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scalping_helper",
+            "certificate_hash": "f1125ac4e905831c3dbae235feb9d4b2176d0e03"
+          }
+        },
+        {
+          "client_id": "81163687272-81p58cqktiavuvp92pto3frpgjjin9sh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDg-PsBjnXZWy25gMnKNi0EffjZmXpehDg"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81163687272-81p58cqktiavuvp92pto3frpgjjin9sh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "81163687272-3n34dk3o0m1830s133f9o0skc38dkf89.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.scalpingHelper"
+              }
+            }
+          ]
         }
       }
     }
