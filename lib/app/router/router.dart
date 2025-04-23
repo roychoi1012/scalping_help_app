@@ -5,11 +5,8 @@ import 'package:scalping_helper/presentation/screen/notification/notification_sc
 import 'package:scalping_helper/presentation/screen/sign_in/sign_in_screen.dart';
 import 'package:scalping_helper/presentation/screen/sign_up/sign_up_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:scalping_helper/presentation/screen/home/home_screen.dart';
-import 'package:scalping_helper/presentation/screen/sign_in/sign_in_screen.dart';
-import 'package:scalping_helper/presentation/screen/sign_up/sign_up_screen.dart';
-import 'package:scalping_helper/presentation/auth/auth_gate.dart';
+
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> _shellNavigatorKey = GlobalKey<NavigatorState>();
