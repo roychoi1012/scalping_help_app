@@ -10,8 +10,9 @@ class HomeScreen extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(
+      backgroundColor: const Color(0xFFEAF6FF), // 부드러운 파란색 배경
       appBar: AppBar(
-        title: const Text('홈 화면'),
+        title: const Text('Dashboard'),
         backgroundColor: const Color(0xFF1976D2),
         foregroundColor: Colors.white,
         actions: [
@@ -28,35 +29,84 @@ class HomeScreen extends StatelessWidget {
             ),
         ],
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (user == null) ...[
-              ElevatedButton(
-                onPressed: () {
-                  context.go('/signup');
-                },
-                child: const Text('회원가입 하러가기'),
+            const Text(
+              'Asset Value',
+              style: TextStyle(fontSize: 18, color: Colors.grey),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const Text(
+                  '₩12,450,000',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  '+1.27%',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.green.shade600,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            // 간단한 그래프 영역 (Placeholder로)
+            Container(
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
               ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  context.go('/sign_in');
-                },
-                child: const Text('로그인 하러가기'),
+              child: const Center(child: Text('Graph Placeholder')),
+            ),
+
+            const SizedBox(height: 24),
+
+            const Text(
+              'Recent Trades',
+              style: TextStyle(fontSize: 18, color: Colors.grey),
+            ),
+            const SizedBox(height: 12),
+
+            // 최근 거래 리스트
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
               ),
-            ] else ...[
-              Text(
-                '반가워요, ${user.email} 님!',
-                style: const TextStyle(fontSize: 18),
+              child: ListTile(
+                title: const Text('Samsung'),
+                subtitle: const Text('BUY'),
+                trailing: Text(
+                  '+0.45%',
+                  style: TextStyle(color: Colors.green.shade600),
+                ),
               ),
-              const SizedBox(height: 24),
-              const Text(
-                '로그인 중입니다.',
-                style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
               ),
-            ],
+              child: ListTile(
+                title: const Text('Hyundai'),
+                subtitle: const Text('SELL'),
+                trailing: Text(
+                  '-0.31%',
+                  style: TextStyle(color: Colors.red.shade600),
+                ),
+              ),
+            ),
           ],
         ),
       ),

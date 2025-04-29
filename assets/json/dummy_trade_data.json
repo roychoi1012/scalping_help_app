@@ -1,0 +1,37 @@
+[
+    {
+        "time": "09:15",
+        "ticker": "AAPL",
+        "buyPrice": 173.50,
+        "sellPrice": 175.00,
+        "profit": 0.87
+    },
+    {
+        "time": "10:42",
+        "ticker": "TSLA",
+        "buyPrice": 210.20,
+        "sellPrice": 213.00,
+        "profit": 1.33
+    },
+    {
+        "time": "11:05",
+        "ticker": "AMZN",
+        "buyPrice": 128.75,
+        "sellPrice": 127.80,
+        "profit": -0.74
+    },
+    {
+        "time": "13:23",
+        "ticker": "MSFT",
+        "buyPrice": 317.00,
+        "sellPrice": 318.20,
+        "profit": 0.38
+    },
+    {
+        "time": "15:48",
+        "ticker": "NVDA",
+        "buyPrice": 912.00,
+        "sellPrice": 908.50,
+        "profit": -0.38
+    }
+]
